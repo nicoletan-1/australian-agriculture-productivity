@@ -1,0 +1,211 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 470,
+  "height": 370,
+  "params": [
+    {
+      "name": "sectorFilter",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Cropping",
+          "Livestock",
+          "Dairy",
+          "Horticulture"
+        ],
+        "labels": [
+          "All Farming Sectors (15 Hubs)",
+          "Broadacre Cropping Hubs",
+          "Beef & Sheep Livestock Hubs",
+          "Dairy Pasture & Irrigated Hubs",
+          "Horticulture & Sugar Hubs"
+        ],
+        "name": "Filter by Sector: "
+      }
+    }
+  ],
+  "projection": {
+    "type": "mercator",
+    "center": [
+      134.0,
+      -28.2
+    ],
+    "scale": 550
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E8E0CE",
+        "stroke": "#FBF8F3",
+        "strokeWidth": 1.8
+      }
+    },
+    {
+      "data": {
+        "url": "data/regional_commodity_hubs.csv"
+      },
+      "transform": [
+        {
+          "filter": "sectorFilter == 'All' || datum.Sector == sectorFilter"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.9,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "Lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "Lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "Value_Million_AUD",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1000,
+              6000
+            ],
+            "range": [
+              120,
+              950
+            ]
+          },
+          "legend": {
+            "title": "Output ($M)",
+            "orient": "right"
+          }
+        },
+        "color": {
+          "field": "Sector",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Cropping",
+              "Livestock",
+              "Dairy",
+              "Horticulture"
+            ],
+            "range": [
+              "#1E4D3B",
+              "#C85A32",
+              "#3B6E8C",
+              "#D98A2B"
+            ]
+          },
+          "legend": {
+            "title": "Sector",
+            "orient": "right"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Region",
+            "type": "nominal",
+            "title": "Production Hub"
+          },
+          {
+            "field": "State",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "Sector",
+            "type": "nominal",
+            "title": "Sector"
+          },
+          {
+            "field": "Primary_Commodity",
+            "type": "nominal",
+            "title": "Key Commodities"
+          },
+          {
+            "field": "Value_Million_AUD",
+            "type": "quantitative",
+            "title": "Annual Output ($M AUD)",
+            "format": ","
+          },
+          {
+            "field": "TFP_Growth_Pct",
+            "type": "quantitative",
+            "title": "Annual TFP Growth (% p.a.)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/regional_commodity_hubs.csv"
+      },
+      "transform": [
+        {
+          "filter": "(sectorFilter == 'All' && datum.Value_Million_AUD >= 4200) || (sectorFilter != 'All' && datum.Sector == sectorFilter)"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -14,
+        "fontSize": 10.5,
+        "fontWeight": "bold",
+        "fill": "#132A20"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "Lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "Lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Region",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Source Sans 3, sans-serif",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "axis": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#232725",
+      "labelColor": "#454D48",
+      "gridColor": "#EAE3D2",
+      "domainColor": "#C7BFA8"
+    },
+    "legend": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#1E4D3B"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

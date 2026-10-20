@@ -1,0 +1,172 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 330,
+  "data": {
+    "url": "data/abares_farm_size_slope.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 4,
+        "point": {
+          "size": 140
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "Period",
+          "type": "ordinal",
+          "title": "Benchmark Era",
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 13,
+            "labelFontWeight": "bold"
+          }
+        },
+        "y": {
+          "field": "Share_of_National_Output_Pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              78
+            ]
+          },
+          "title": "Share of National Broadacre Output (%)"
+        },
+        "color": {
+          "field": "Size_Tier",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Top 10% Mega-Farms (>$2M Receipts)",
+              "Large Commercial ($1M-$2M)",
+              "Medium Family Farms ($400k-$1M)",
+              "Small & Lifestyle Farms (<$400k)"
+            ],
+            "range": [
+              "#1E4D3B",
+              "#3B6E8C",
+              "#D98A2B",
+              "#C85A32"
+            ]
+          },
+          "legend": {
+            "title": "Farm Size Tier (% of Farms)"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Size_Tier",
+            "type": "nominal",
+            "title": "Farm Size Tier"
+          },
+          {
+            "field": "Period",
+            "type": "ordinal",
+            "title": "Era"
+          },
+          {
+            "field": "Share_of_National_Output_Pct",
+            "type": "quantitative",
+            "title": "Output Share (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Share_of_Farm_Count_Pct",
+            "type": "quantitative",
+            "title": "Share of Total Farms (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -12,
+        "fontSize": 11.5,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "Period",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "Share_of_National_Output_Pct",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Size_Tier",
+          "type": "nominal"
+        },
+        "text": {
+          "field": "Share_of_National_Output_Pct",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Period": "2020s Current",
+            "Y": 55,
+            "Note": "+25.5% share shift to Mega-Farms"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "dx": -65,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fill": "#1E4D3B"
+      },
+      "encoding": {
+        "x": {
+          "field": "Period",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "Y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Note",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Source Sans 3, sans-serif",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "axis": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#232725",
+      "labelColor": "#454D48",
+      "gridColor": "#EAE3D2",
+      "domainColor": "#C7BFA8"
+    },
+    "legend": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#1E4D3B"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

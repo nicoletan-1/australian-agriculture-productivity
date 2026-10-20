@@ -1,0 +1,250 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 470,
+  "height": 360,
+  "padding": {
+    "top": 8,
+    "bottom": 8,
+    "left": 6,
+    "right": 6
+  },
+  "params": [
+    {
+      "name": "metricSelect",
+      "value": "GVAP_Billion_AUD",
+      "bind": {
+        "input": "select",
+        "options": [
+          "GVAP_Billion_AUD",
+          "TFP_Annual_Growth_Pct",
+          "Cropping_Share_Pct",
+          "Water_Efficiency_Index"
+        ],
+        "labels": [
+          "Gross Value of Production ($B AUD)",
+          "Annual TFP Growth (% p.a.)",
+          "Cropping Share of Output (%)",
+          "Water Efficiency Index (1990=100)"
+        ],
+        "name": "Select Map Metric: "
+      }
+    }
+  ],
+  "projection": {
+    "type": "mercator",
+    "center": [
+      134.0,
+      -29.0
+    ],
+    "scale": 475
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#EAE3D2",
+        "stroke": "#FBF8F3",
+        "strokeWidth": 1.8
+      }
+    },
+    {
+      "data": {
+        "url": "data/au_states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "calculate": "metricSelect == 'GVAP_Billion_AUD' ? datum.properties.Score_GVAP_Billion_AUD : metricSelect == 'TFP_Annual_Growth_Pct' ? datum.properties.Score_TFP_Annual_Growth_Pct : metricSelect == 'Cropping_Share_Pct' ? datum.properties.Score_Cropping_Share_Pct : datum.properties.Score_Water_Efficiency_Index",
+          "as": "ColourScore"
+        },
+        {
+          "calculate": "metricSelect == 'GVAP_Billion_AUD' ? datum.properties.GVAP_Billion_AUD : metricSelect == 'TFP_Annual_Growth_Pct' ? datum.properties.TFP_Annual_Growth_Pct : metricSelect == 'Cropping_Share_Pct' ? datum.properties.Cropping_Share_Pct : datum.properties.Water_Efficiency_Index",
+          "as": "SelectedExactValue"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#FBF8F3",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "color": {
+          "field": "ColourScore",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              10,
+              55,
+              100
+            ],
+            "range": [
+              "#E5E0CC",
+              "#68A678",
+              "#1E4D3B"
+            ]
+          },
+          "legend": {
+            "title": "Relative State Intensity (0 = Lowest, 100 = Highest)",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 220,
+            "values": [
+              15,
+              55,
+              100
+            ],
+            "labelExpr": "datum.value <= 20 ? 'Low' : datum.value == 55 ? 'Medium' : 'High (Leader)'"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.State",
+            "type": "nominal",
+            "title": "State / Territory"
+          },
+          {
+            "field": "SelectedExactValue",
+            "type": "quantitative",
+            "title": "Selected Metric Value",
+            "format": ".2f"
+          },
+          {
+            "field": "properties.GVAP_Billion_AUD",
+            "type": "quantitative",
+            "title": "Gross Value ($B AUD)",
+            "format": ".1f"
+          },
+          {
+            "field": "properties.TFP_Annual_Growth_Pct",
+            "type": "quantitative",
+            "title": "Annual TFP Growth (% p.a.)",
+            "format": ".2f"
+          },
+          {
+            "field": "properties.Cropping_Share_Pct",
+            "type": "quantitative",
+            "title": "Cropping Share (%)"
+          },
+          {
+            "field": "properties.Water_Efficiency_Index",
+            "type": "quantitative",
+            "title": "Water Efficiency Index"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_ag_metrics.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.State_Code != 'ACT'"
+        },
+        {
+          "calculate": "datum[metricSelect]",
+          "as": "ActiveVal"
+        },
+        {
+          "calculate": "datum.State_Code + ': ' + datum.ActiveVal + (metricSelect == 'GVAP_Billion_AUD' ? 'B' : metricSelect == 'Water_Efficiency_Index' ? '' : '%')",
+          "as": "StateLabel"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontWeight": "bold",
+        "fontSize": 11,
+        "fill": "#111A15"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "Lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "Lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "StateLabel",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Lon": 120.0,
+            "Lat": -35.5,
+            "Note": "WA: Highest TFP growth (+1.92% p.a.)"
+          },
+          {
+            "Lon": 147.2,
+            "Lat": -41.2,
+            "Note": "MDB: $45B+ output"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10.5,
+        "fontStyle": "italic",
+        "fontWeight": 700,
+        "fill": "#C85A32"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "Lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "Lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Note",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Source Sans 3, sans-serif",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "axis": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#232725",
+      "labelColor": "#454D48",
+      "gridColor": "#EAE3D2",
+      "domainColor": "#C7BFA8"
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 11.5,
+      "titleFontWeight": 600,
+      "titleColor": "#1E4D3B",
+      "titleLimit": 260,
+      "labelLimit": 220
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

@@ -1,0 +1,304 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 340,
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "Start": 1982,
+            "End": 1983.5,
+            "Event": "1982\u201383 Severe Drought"
+          },
+          {
+            "Start": 2001,
+            "End": 2009,
+            "Event": "Millennium Drought (2001\u20132009)"
+          },
+          {
+            "Start": 2017,
+            "End": 2019.5,
+            "Event": "Eastern Australian Drought (2017\u20132019)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#C85A32",
+        "opacity": 0.15
+      },
+      "encoding": {
+        "x": {
+          "field": "Start",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1980,
+              2024
+            ],
+            "zero": false,
+            "nice": false
+          },
+          "axis": {
+            "format": "d",
+            "title": "Year (1980\u20132024)",
+            "tickCount": 12
+          }
+        },
+        "x2": {
+          "field": "End"
+        },
+        "tooltip": [
+          {
+            "field": "Event",
+            "type": "nominal",
+            "title": "Major Climatic Event"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/abares_tfp_timeseries.csv"
+      },
+      "transform": [
+        {
+          "fold": [
+            "Actual_TFP_Index",
+            "Climate_Adjusted_TFP_Index",
+            "Input_Index"
+          ],
+          "as": [
+            "Series",
+            "Index_Value"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "point": {
+          "size": 70
+        },
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1980,
+              2024
+            ],
+            "zero": false,
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "Index_Value",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              80,
+              195
+            ],
+            "zero": false
+          },
+          "title": "Productivity / Input Index (1980 = 100)"
+        },
+        "color": {
+          "field": "Series",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Actual_TFP_Index",
+              "Climate_Adjusted_TFP_Index",
+              "Input_Index"
+            ],
+            "range": [
+              "#1E4D3B",
+              "#D98A2B",
+              "#6E7A73"
+            ]
+          },
+          "legend": {
+            "title": "ABARES Index Series",
+            "orient": "top",
+            "labelExpr": "datum.label == 'Actual_TFP_Index' ? 'Actual Observed TFP' : datum.label == 'Climate_Adjusted_TFP_Index' ? 'Climate-Adjusted TFP (Tech Trend)' : 'Total Farm Input Volume'"
+          }
+        },
+        "strokeDash": {
+          "field": "Series",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Actual_TFP_Index",
+              "Climate_Adjusted_TFP_Index",
+              "Input_Index"
+            ],
+            "range": [
+              [
+                1,
+                0
+              ],
+              [
+                6,
+                3
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "quantitative",
+            "title": "Year"
+          },
+          {
+            "field": "Phase",
+            "type": "nominal",
+            "title": "Seasonal Context"
+          },
+          {
+            "field": "Actual_TFP_Index",
+            "type": "quantitative",
+            "title": "Actual Observed TFP"
+          },
+          {
+            "field": "Climate_Adjusted_TFP_Index",
+            "type": "quantitative",
+            "title": "Climate-Adjusted TFP"
+          },
+          {
+            "field": "Input_Index",
+            "type": "quantitative",
+            "title": "Total Input Volume Index"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": 1982.5,
+            "Y": 188,
+            "Label": "1982\u201383 Drought"
+          },
+          {
+            "Year": 2005.0,
+            "Y": 188,
+            "Label": "Millennium Drought (2001\u201309)"
+          },
+          {
+            "Year": 2018.2,
+            "Y": 108,
+            "Label": "2017\u201319 Drought"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fill": "#C85A32"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1980,
+              2024
+            ],
+            "zero": false,
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "Y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Label",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": 2021.0,
+            "Y": 188,
+            "Note": "Record La Ni\u00f1a Harvest (184.2)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "dx": -20,
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fill": "#1E4D3B"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1980,
+              2024
+            ],
+            "zero": false,
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "Y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Note",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Source Sans 3, sans-serif",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "axis": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#232725",
+      "labelColor": "#454D48",
+      "gridColor": "#EAE3D2",
+      "domainColor": "#C7BFA8"
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 11.5,
+      "titleFontWeight": 600,
+      "titleColor": "#1E4D3B",
+      "labelLimit": 260
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 320,
+  "data": {
+    "url": "data/abs_commodity_history.csv"
+  },
+  "params": [
+    {
+      "name": "yearHorizon",
+      "value": 2025,
+      "bind": {
+        "input": "range",
+        "min": 1990,
+        "max": 2025,
+        "step": 5,
+        "name": "Scrub Timeline Horizon (1990 \u2192 2025): "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "opacity": 0.92
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "scale": {
+            "domain": [
+              "1985-01-01",
+              "2025-01-01"
+            ]
+          },
+          "axis": {
+            "format": "%Y",
+            "title": "Year (Drag slider below to progressively reveal 1990 \u2192 2025)",
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "Real_Value_Billion_AUD",
+          "type": "quantitative",
+          "stack": "center",
+          "axis": null
+        },
+        "color": {
+          "field": "Commodity",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Wheat & Coarse Grains",
+              "Beef & Veal",
+              "Horticulture & Fruit",
+              "Oilseeds & Canola",
+              "Dairy & Milk",
+              "Wool & Sheepmeat"
+            ],
+            "range": [
+              "#1E4D3B",
+              "#C85A32",
+              "#D98A2B",
+              "#6B8E23",
+              "#3B6E8C",
+              "#8C6D53"
+            ]
+          },
+          "legend": {
+            "title": "Commodity Group",
+            "orient": "bottom",
+            "columns": 3
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "Commodity",
+            "type": "nominal",
+            "title": "Commodity Group"
+          },
+          {
+            "field": "Real_Value_Billion_AUD",
+            "type": "quantitative",
+            "title": "Real Value ($B AUD)",
+            "format": ".1f"
+          },
+          {
+            "field": "Rank",
+            "type": "ordinal",
+            "title": "National Value Rank"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(yearHorizon + '-01-01')",
+          "as": "CurtainStart"
+        },
+        {
+          "calculate": "toDate('2025-01-01')",
+          "as": "CurtainEnd"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": "#FFFFFF",
+        "opacity": 0.82
+      },
+      "encoding": {
+        "x": {
+          "field": "CurtainStart",
+          "type": "temporal",
+          "scale": {
+            "domain": [
+              "1985-01-01",
+              "2025-01-01"
+            ]
+          }
+        },
+        "x2": {
+          "field": "CurtainEnd"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(yearHorizon + '-01-01')",
+          "as": "ActiveDate"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "#1E4D3B",
+        "strokeWidth": 2.5,
+        "strokeDash": [
+          5,
+          3
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "ActiveDate",
+          "type": "temporal",
+          "scale": {
+            "domain": [
+              "1985-01-01",
+              "2025-01-01"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Date": "1991-01-01"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#C85A32",
+        "strokeDash": [
+          3,
+          3
+        ],
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "scale": {
+            "domain": [
+              "1985-01-01",
+              "2025-01-01"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Date": "1991-06-01",
+            "Note": "\u2190 1991 Wool Crash shifts land to cropping"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fill": "#C85A32"
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "scale": {
+            "domain": [
+              "1985-01-01",
+              "2025-01-01"
+            ]
+          }
+        },
+        "y": {
+          "value": 16
+        },
+        "text": {
+          "field": "Note",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Source Sans 3, sans-serif",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "axis": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#232725",
+      "labelColor": "#454D48",
+      "gridColor": "#EAE3D2",
+      "domainColor": "#C7BFA8"
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 11.5,
+      "titleFontWeight": 600,
+      "titleColor": "#1E4D3B",
+      "titleLimit": 220,
+      "labelLimit": 220
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "data/state_climate_matrix.csv"
+  },
+  "spacing": 10,
+  "bounds": "flush",
+  "hconcat": [
+    {
+      "width": 310,
+      "height": 250,
+      "mark": {
+        "type": "rect",
+        "stroke": "#FBF8F3",
+        "strokeWidth": 1.5,
+        "cornerRadius": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "title": "Benchmark Climatic Year",
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 10.5
+          }
+        },
+        "y": {
+          "field": "State",
+          "type": "nominal",
+          "title": "State"
+        },
+        "color": {
+          "field": "TFP_Climate_Shock_Pct",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "redyellowgreen",
+            "domain": [
+              -25,
+              25
+            ]
+          },
+          "legend": {
+            "title": "TFP Anomaly (%)",
+            "orient": "bottom",
+            "gradientLength": 180
+          }
+        },
+        "tooltip": [
+          {
+            "field": "State",
+            "type": "nominal"
+          },
+          {
+            "field": "Year",
+            "type": "ordinal"
+          },
+          {
+            "field": "TFP_Climate_Shock_Pct",
+            "type": "quantitative",
+            "title": "Climate TFP Deviation (%)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "width": 105,
+      "height": 250,
+      "mark": {
+        "type": "bar",
+        "color": "#C85A32",
+        "cornerRadiusEnd": 4,
+        "height": {
+          "band": 0.72
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "State",
+          "type": "nominal",
+          "axis": {
+            "title": null,
+            "labels": false,
+            "ticks": false
+          }
+        },
+        "x": {
+          "aggregate": "mean",
+          "field": "Abs_Shock_Magnitude",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              18
+            ]
+          },
+          "axis": {
+            "title": "Avg Shock (\u00b1%)",
+            "tickCount": 3
+          }
+        },
+        "tooltip": [
+          {
+            "field": "State",
+            "type": "nominal"
+          },
+          {
+            "aggregate": "mean",
+            "field": "Abs_Shock_Magnitude",
+            "type": "quantitative",
+            "title": "Mean Volatility (\u00b1%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Source Sans 3, sans-serif",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "axis": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#232725",
+      "labelColor": "#454D48",
+      "gridColor": "#EAE3D2",
+      "domainColor": "#C7BFA8"
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 11.5,
+      "titleFontWeight": 600,
+      "titleColor": "#1E4D3B"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

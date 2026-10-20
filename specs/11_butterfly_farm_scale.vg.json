@@ -1,0 +1,214 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "data/abares_farm_scale_butterfly.csv"
+  },
+  "spacing": 8,
+  "bounds": "flush",
+  "hconcat": [
+    {
+      "width": 165,
+      "height": 265,
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "color": "#C85A32",
+            "cornerRadiusEnd": 4,
+            "height": {
+              "band": 0.72
+            }
+          },
+          "encoding": {
+            "y": {
+              "field": "Farm_Size_Class",
+              "type": "nominal",
+              "sort": {
+                "field": "Sort_Order",
+                "order": "ascending"
+              },
+              "axis": null
+            },
+            "x": {
+              "field": "Cost_To_Output_Ratio_Pct",
+              "type": "quantitative",
+              "sort": "descending",
+              "scale": {
+                "domain": [
+                  0,
+                  115
+                ]
+              },
+              "axis": {
+                "title": "Cost-to-Output (%)",
+                "tickCount": 4
+              }
+            },
+            "tooltip": [
+              {
+                "field": "Farm_Size_Class",
+                "type": "nominal",
+                "title": "Farm Turnover Class"
+              },
+              {
+                "field": "Cost_To_Output_Ratio_Pct",
+                "type": "quantitative",
+                "title": "Cost-to-Output Ratio (%)"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -5,
+            "fontSize": 10.5,
+            "fontWeight": "bold",
+            "fill": "#FFFFFF"
+          },
+          "encoding": {
+            "y": {
+              "field": "Farm_Size_Class",
+              "type": "nominal",
+              "sort": {
+                "field": "Sort_Order",
+                "order": "ascending"
+              }
+            },
+            "x": {
+              "field": "Cost_To_Output_Ratio_Pct",
+              "type": "quantitative",
+              "sort": "descending"
+            },
+            "text": {
+              "field": "Cost_To_Output_Ratio_Pct",
+              "type": "quantitative",
+              "format": ".0f"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "width": 185,
+      "height": 265,
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "color": "#1E4D3B",
+            "cornerRadiusEnd": 4,
+            "height": {
+              "band": 0.72
+            }
+          },
+          "encoding": {
+            "y": {
+              "field": "Farm_Size_Class",
+              "type": "nominal",
+              "sort": {
+                "field": "Sort_Order",
+                "order": "ascending"
+              },
+              "axis": {
+                "title": null,
+                "labelFontWeight": 600,
+                "labelFontSize": 10.5,
+                "labelLimit": 130
+              }
+            },
+            "x": {
+              "field": "Rate_Of_Return_Pct",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  12.5
+                ]
+              },
+              "axis": {
+                "title": "Rate of Return (%)",
+                "tickCount": 4
+              }
+            },
+            "tooltip": [
+              {
+                "field": "Farm_Size_Class",
+                "type": "nominal",
+                "title": "Farm Turnover Class"
+              },
+              {
+                "field": "Rate_Of_Return_Pct",
+                "type": "quantitative",
+                "title": "Rate of Return (%)"
+              },
+              {
+                "field": "TFP_Annual_Growth_Pct",
+                "type": "quantitative",
+                "title": "Annual TFP Growth (%)"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 5,
+            "fontSize": 10.5,
+            "fontWeight": "bold",
+            "fill": "#1E4D3B"
+          },
+          "encoding": {
+            "y": {
+              "field": "Farm_Size_Class",
+              "type": "nominal",
+              "sort": {
+                "field": "Sort_Order",
+                "order": "ascending"
+              }
+            },
+            "x": {
+              "field": "Rate_Of_Return_Pct",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "Rate_Of_Return_Pct",
+              "type": "quantitative",
+              "format": ".1f"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Source Sans 3, sans-serif",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "axis": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#232725",
+      "labelColor": "#454D48",
+      "gridColor": "#EAE3D2",
+      "domainColor": "#C7BFA8"
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 11.5,
+      "titleFontWeight": 600,
+      "titleColor": "#1E4D3B",
+      "titleLimit": 220,
+      "labelLimit": 220
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

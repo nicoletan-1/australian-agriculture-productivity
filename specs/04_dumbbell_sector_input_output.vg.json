@@ -1,0 +1,237 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 310,
+  "data": {
+    "url": "data/abares_sector_shifts.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#9E9583",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "datum": 100
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#1E4D3B",
+        "strokeWidth": 4,
+        "opacity": 0.3
+      },
+      "encoding": {
+        "y": {
+          "field": "Sector",
+          "type": "nominal",
+          "sort": "-x",
+          "title": null,
+          "axis": {
+            "labelFontWeight": 600
+          }
+        },
+        "x": {
+          "field": "Input_Index_2024",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              50,
+              245
+            ]
+          },
+          "title": "Volume Index (1990 Baseline = 100)"
+        },
+        "x2": {
+          "field": "Output_Index_2024"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 190,
+        "color": "#C85A32",
+        "opacity": 0.95,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "y": {
+          "field": "Sector",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "Input_Index_2024",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "Sector",
+            "type": "nominal",
+            "title": "Farming Sector"
+          },
+          {
+            "field": "Input_Index_2024",
+            "type": "quantitative",
+            "title": "2024 Input Volume Index",
+            "format": ".1f"
+          },
+          {
+            "field": "Output_Index_2024",
+            "type": "quantitative",
+            "title": "2024 Output Volume Index",
+            "format": ".1f"
+          },
+          {
+            "field": "Net_TFP_Gain_Pts",
+            "type": "quantitative",
+            "title": "Net Efficiency Wedge (Pts)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 190,
+        "color": "#1E4D3B",
+        "opacity": 0.95,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "y": {
+          "field": "Sector",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "Output_Index_2024",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "Sector",
+            "type": "nominal",
+            "title": "Farming Sector"
+          },
+          {
+            "field": "Input_Index_2024",
+            "type": "quantitative",
+            "title": "2024 Input Volume Index",
+            "format": ".1f"
+          },
+          {
+            "field": "Output_Index_2024",
+            "type": "quantitative",
+            "title": "2024 Output Volume Index",
+            "format": ".1f"
+          },
+          {
+            "field": "Annual_TFP_Growth_Pct",
+            "type": "quantitative",
+            "title": "Annual TFP Growth (% p.a.)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fill": "#1E4D3B"
+      },
+      "encoding": {
+        "y": {
+          "field": "Sector",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "Output_Index_2024",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Output_Index_2024",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "X": 68,
+            "Sector": "Wool Specialist",
+            "Note": "\u2190 Vertical dashed line = 1990 Baseline Index (100)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dy": -22,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "fill": "#C85A32"
+      },
+      "encoding": {
+        "x": {
+          "field": "X",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Sector",
+          "type": "nominal"
+        },
+        "text": {
+          "field": "Note",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Source Sans 3, sans-serif",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "axis": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#232725",
+      "labelColor": "#454D48",
+      "gridColor": "#EAE3D2",
+      "domainColor": "#C7BFA8"
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 11.5,
+      "titleFontWeight": 600,
+      "titleColor": "#1E4D3B"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+Region,State,Sector,Lat,Lon,Value_Million_AUD,TFP_Growth_Pct,Primary_Commodity
+Central Wheatbelt,WA,Cropping,-31.65,117.85,5850,2.15,Wheat & Canola
+Esperance Plains,WA,Cropping,-33.6,121.89,2640,2.04,Barley & Canola
+Riverina Basin,NSW,Cropping,-34.75,146.05,4920,1.72,"Wheat, Rice & Citrus"
+New England & NW Slopes,NSW,Cropping,-29.85,150.1,3810,1.84,Cotton & Sorghum
+Wimmera-Mallee,VIC,Cropping,-36.15,142.2,3690,1.79,"Wheat, Lentils & Barley"
+Goulburn Valley,VIC,Dairy,-36.38,145.4,2890,1.46,Dairy & Orchards
+Gippsland,VIC,Dairy,-38.05,146.25,2420,1.51,Pasture Dairy & Beef
+Western District,VIC,Livestock,-37.8,142.35,2750,1.33,Prime Lamb & Fine Wool
+Darling Downs,QLD,Cropping,-27.45,151.45,4580,1.76,"Cotton, Grains & Feedlot Beef"
+Fitzroy & Central Highlands,QLD,Livestock,-23.45,149.15,4120,1.39,Northern Beef Cattle
+Burdekin & Mackay Coast,QLD,Horticulture,-19.65,147.35,2380,1.28,Sugarcane & Tropical Fruit
+Eyre & Yorke Peninsulas,SA,Cropping,-33.9,136.5,3420,1.88,Wheat & Malting Barley
+Riverland & Murray Lands,SA,Horticulture,-34.25,140.45,2240,1.54,"Wine Grapes, Almonds & Citrus"
+Northern Midlands & NW,TAS,Dairy,-41.35,146.4,1680,1.62,Irrigated Dairy & Vegetables
+Barkly Tableland,NT,Livestock,-18.8,135.4,1120,1.14,Extensive Pastoral Cattle

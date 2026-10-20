@@ -1,0 +1,55 @@
+Date,Year,Commodity,Real_Value_Billion_AUD,Rank
+1985-01-01,1985,Wheat & Coarse Grains,8.4,2
+1985-01-01,1985,Beef & Veal,7.2,3
+1985-01-01,1985,Horticulture & Fruit,4.1,4
+1985-01-01,1985,Oilseeds & Canola,0.9,6
+1985-01-01,1985,Dairy & Milk,3.8,5
+1985-01-01,1985,Wool & Sheepmeat,9.5,1
+1990-01-01,1990,Wheat & Coarse Grains,7.9,3
+1990-01-01,1990,Beef & Veal,8.5,2
+1990-01-01,1990,Horticulture & Fruit,5.2,4
+1990-01-01,1990,Oilseeds & Canola,1.3,6
+1990-01-01,1990,Dairy & Milk,4.4,5
+1990-01-01,1990,Wool & Sheepmeat,9.8,1
+1995-01-01,1995,Wheat & Coarse Grains,9.6,1
+1995-01-01,1995,Beef & Veal,9.1,2
+1995-01-01,1995,Horticulture & Fruit,6.4,4
+1995-01-01,1995,Oilseeds & Canola,2.4,6
+1995-01-01,1995,Dairy & Milk,5.5,5
+1995-01-01,1995,Wool & Sheepmeat,6.8,3
+2000-01-01,2000,Wheat & Coarse Grains,12.1,1
+2000-01-01,2000,Beef & Veal,10.4,2
+2000-01-01,2000,Horticulture & Fruit,7.8,3
+2000-01-01,2000,Oilseeds & Canola,3.8,6
+2000-01-01,2000,Dairy & Milk,6.6,4
+2000-01-01,2000,Wool & Sheepmeat,6.2,5
+2005-01-01,2005,Wheat & Coarse Grains,11.4,2
+2005-01-01,2005,Beef & Veal,12.6,1
+2005-01-01,2005,Horticulture & Fruit,9.1,3
+2005-01-01,2005,Oilseeds & Canola,4.2,6
+2005-01-01,2005,Dairy & Milk,6.9,4
+2005-01-01,2005,Wool & Sheepmeat,6.5,5
+2010-01-01,2010,Wheat & Coarse Grains,13.8,1
+2010-01-01,2010,Beef & Veal,11.9,2
+2010-01-01,2010,Horticulture & Fruit,10.6,3
+2010-01-01,2010,Oilseeds & Canola,5.6,6
+2010-01-01,2010,Dairy & Milk,7.4,4
+2010-01-01,2010,Wool & Sheepmeat,7.1,5
+2015-01-01,2015,Wheat & Coarse Grains,17.5,1
+2015-01-01,2015,Beef & Veal,16.8,2
+2015-01-01,2015,Horticulture & Fruit,12.4,3
+2015-01-01,2015,Oilseeds & Canola,7.9,6
+2015-01-01,2015,Dairy & Milk,8.2,5
+2015-01-01,2015,Wool & Sheepmeat,8.6,4
+2020-01-01,2020,Wheat & Coarse Grains,19.8,1
+2020-01-01,2020,Beef & Veal,18.9,2
+2020-01-01,2020,Horticulture & Fruit,14.8,3
+2020-01-01,2020,Oilseeds & Canola,10.4,4
+2020-01-01,2020,Dairy & Milk,9.1,6
+2020-01-01,2020,Wool & Sheepmeat,9.6,5
+2025-01-01,2025,Wheat & Coarse Grains,25.4,1
+2025-01-01,2025,Beef & Veal,21.6,2
+2025-01-01,2025,Horticulture & Fruit,17.2,3
+2025-01-01,2025,Oilseeds & Canola,13.8,4
+2025-01-01,2025,Dairy & Milk,10.9,5
+2025-01-01,2025,Wool & Sheepmeat,9.4,6

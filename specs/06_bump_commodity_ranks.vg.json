@@ -1,0 +1,459 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 340,
+  "padding": {
+    "top": 18,
+    "bottom": 8,
+    "left": 8,
+    "right": 8
+  },
+  "data": {
+    "url": "data/abs_commodity_history.csv"
+  },
+  "params": [
+    {
+      "name": "bumpYearHorizon",
+      "value": 2025,
+      "bind": {
+        "input": "range",
+        "min": 1990,
+        "max": 2025,
+        "step": 5,
+        "name": "Scrub Ranking Timeline (1990 \u2192 2025): "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "interpolate": "monotone",
+        "opacity": 0.16
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "1985",
+              "1990",
+              "1995",
+              "2000",
+              "2005",
+              "2010",
+              "2015",
+              "2020",
+              "2025"
+            ]
+          },
+          "title": "Benchmark Year (Drag slider below to trace rank shifts 1990 \u2192 2025)",
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "Rank",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "title": "National Rank by Gross Value (#1 = Highest)"
+        },
+        "color": {
+          "field": "Commodity",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Wheat & Coarse Grains",
+              "Beef & Veal",
+              "Horticulture & Fruit",
+              "Oilseeds & Canola",
+              "Dairy & Milk",
+              "Wool & Sheepmeat"
+            ],
+            "range": [
+              "#1E4D3B",
+              "#C85A32",
+              "#D98A2B",
+              "#6B8E23",
+              "#3B6E8C",
+              "#8C6D53"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 140,
+        "opacity": 0.16
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "1985",
+              "1990",
+              "1995",
+              "2000",
+              "2005",
+              "2010",
+              "2015",
+              "2020",
+              "2025"
+            ]
+          }
+        },
+        "y": {
+          "field": "Rank",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          }
+        },
+        "color": {
+          "field": "Commodity",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Wheat & Coarse Grains",
+              "Beef & Veal",
+              "Horticulture & Fruit",
+              "Oilseeds & Canola",
+              "Dairy & Milk",
+              "Wool & Sheepmeat"
+            ],
+            "range": [
+              "#1E4D3B",
+              "#C85A32",
+              "#D98A2B",
+              "#6B8E23",
+              "#3B6E8C",
+              "#8C6D53"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "toNumber(datum.Year) <= bumpYearHorizon"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3.8,
+        "interpolate": "monotone",
+        "opacity": 0.95
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "1985",
+              "1990",
+              "1995",
+              "2000",
+              "2005",
+              "2010",
+              "2015",
+              "2020",
+              "2025"
+            ]
+          }
+        },
+        "y": {
+          "field": "Rank",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          }
+        },
+        "color": {
+          "field": "Commodity",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Wheat & Coarse Grains",
+              "Beef & Veal",
+              "Horticulture & Fruit",
+              "Oilseeds & Canola",
+              "Dairy & Milk",
+              "Wool & Sheepmeat"
+            ],
+            "range": [
+              "#1E4D3B",
+              "#C85A32",
+              "#D98A2B",
+              "#6B8E23",
+              "#3B6E8C",
+              "#8C6D53"
+            ]
+          },
+          "legend": {
+            "title": "Commodity Group",
+            "orient": "right"
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "toNumber(datum.Year) <= bumpYearHorizon"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 195,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "1985",
+              "1990",
+              "1995",
+              "2000",
+              "2005",
+              "2010",
+              "2015",
+              "2020",
+              "2025"
+            ]
+          }
+        },
+        "y": {
+          "field": "Rank",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          }
+        },
+        "color": {
+          "field": "Commodity",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Wheat & Coarse Grains",
+              "Beef & Veal",
+              "Horticulture & Fruit",
+              "Oilseeds & Canola",
+              "Dairy & Milk",
+              "Wool & Sheepmeat"
+            ],
+            "range": [
+              "#1E4D3B",
+              "#C85A32",
+              "#D98A2B",
+              "#6B8E23",
+              "#3B6E8C",
+              "#8C6D53"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Benchmark Year"
+          },
+          {
+            "field": "Commodity",
+            "type": "nominal",
+            "title": "Commodity Group"
+          },
+          {
+            "field": "Rank",
+            "type": "ordinal",
+            "title": "National Value Rank (#1 = Top)"
+          },
+          {
+            "field": "Real_Value_Billion_AUD",
+            "type": "quantitative",
+            "title": "Real Value ($B AUD)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toString(bumpYearHorizon)",
+          "as": "ActiveYearStr"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "#1E4D3B",
+        "strokeWidth": 2,
+        "strokeDash": [
+          5,
+          3
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "ActiveYearStr",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "1985",
+              "1990",
+              "1995",
+              "2000",
+              "2005",
+              "2010",
+              "2015",
+              "2020",
+              "2025"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": "1990",
+            "Rank": "1",
+            "Note": "Wool peaks at #1 (1985\u201390)"
+          },
+          {
+            "Year": "2020",
+            "Rank": "4",
+            "Note": "Canola surges #6 \u2192 #4"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "toNumber(datum.Year) <= bumpYearHorizon"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -15,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fill": "#C85A32"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "1985",
+              "1990",
+              "1995",
+              "2000",
+              "2005",
+              "2010",
+              "2015",
+              "2020",
+              "2025"
+            ]
+          }
+        },
+        "y": {
+          "field": "Rank",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          }
+        },
+        "text": {
+          "field": "Note",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Source Sans 3, sans-serif",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "axis": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#232725",
+      "labelColor": "#454D48",
+      "gridColor": "#EAE3D2",
+      "domainColor": "#C7BFA8"
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 11.5,
+      "titleFontWeight": 600,
+      "titleColor": "#1E4D3B",
+      "titleLimit": 220,
+      "labelLimit": 220
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

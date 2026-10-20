@@ -1,0 +1,233 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 380,
+  "height": 310,
+  "data": {
+    "url": "data/rd_investment_sectors.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#9E9583",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "datum": 1.52
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#1E4D3B",
+        "strokeWidth": 3.5,
+        "opacity": 0.85
+      },
+      "encoding": {
+        "y": {
+          "field": "Industry",
+          "type": "nominal",
+          "sort": "-x",
+          "title": null,
+          "axis": {
+            "labelLimit": 180,
+            "labelFontWeight": 600,
+            "labelPadding": 8
+          }
+        },
+        "x": {
+          "field": "Annual_TFP_Payoff_Pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              2.55
+            ]
+          },
+          "title": "Long-Term Annual TFP Growth (% per annum)"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.95,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "y": {
+          "field": "Industry",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "Annual_TFP_Payoff_Pct",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "RD_Intensity_Pct_GVP",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1.5,
+              5.5
+            ],
+            "range": [
+              160,
+              480
+            ]
+          },
+          "legend": {
+            "title": "R&D Intensity (% GVP)",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "titleLimit": 180,
+            "offset": 8
+          }
+        },
+        "color": {
+          "field": "Benefit_Cost_Ratio",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "viridis",
+            "domain": [
+              3.5,
+              9.5
+            ]
+          },
+          "legend": {
+            "title": "Benefit-Cost (x:1)",
+            "orient": "top",
+            "direction": "horizontal",
+            "titleLimit": 150,
+            "gradientLength": 130
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Industry",
+            "type": "nominal",
+            "title": "Sub-Sector"
+          },
+          {
+            "field": "Annual_TFP_Payoff_Pct",
+            "type": "quantitative",
+            "title": "Annual TFP Growth (% p.a.)",
+            "format": ".2f"
+          },
+          {
+            "field": "RD_Intensity_Pct_GVP",
+            "type": "quantitative",
+            "title": "R&D Intensity (% of GVP)",
+            "format": ".2f"
+          },
+          {
+            "field": "Benefit_Cost_Ratio",
+            "type": "quantitative",
+            "title": "Benefit-Cost Return (x:1)",
+            "format": ".1f"
+          },
+          {
+            "field": "Primary_Driver",
+            "type": "nominal",
+            "title": "Key Innovation Driver"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 14,
+        "fontSize": 11.5,
+        "fontWeight": "bold",
+        "fill": "#1E4D3B"
+      },
+      "encoding": {
+        "y": {
+          "field": "Industry",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "Annual_TFP_Payoff_Pct",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Annual_TFP_Payoff_Pct",
+          "type": "quantitative",
+          "format": ".2f"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "X": 1.55,
+            "Industry": "Wool Production",
+            "Note": "\u2190 National Mean TFP (1.52% p.a.)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dy": 14,
+        "fontSize": 10.5,
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "fill": "#C85A32"
+      },
+      "encoding": {
+        "x": {
+          "field": "X",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Industry",
+          "type": "nominal"
+        },
+        "text": {
+          "field": "Note",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Source Sans 3, sans-serif",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "axis": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#232725",
+      "labelColor": "#454D48",
+      "gridColor": "#EAE3D2",
+      "domainColor": "#C7BFA8"
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 11.5,
+      "titleFontWeight": 600,
+      "titleColor": "#1E4D3B",
+      "titleLimit": 220
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}
