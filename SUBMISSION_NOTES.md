@@ -1,5 +1,5 @@
 # FIT3179 Data Visualisation 2 — Moodle Submission Notes & Sketch Guide
-**Author:** Eben  
+**Author:** Nicole Tan 
 **Date:** October 2026  
 
 ---
