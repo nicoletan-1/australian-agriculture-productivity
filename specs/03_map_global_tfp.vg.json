@@ -1,63 +1,183 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
-  "height": 380,
-  "projection": { "type": "equalEarth" },
+  "width": 680,
+  "height": 360,
+  "projection": {
+    "type": "equalEarth"
+  },
   "layer": [
     {
-      "data": { "sphere": true },
-      "mark": { "type": "geoshape", "fill": "#F4EFE4" }
+      "data": {
+        "sphere": true
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F4EFE4"
+      }
+    },
+    {
+      "data": {
+        "graticule": {
+          "step": [
+            30,
+            30
+          ]
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#E2DAC6",
+        "strokeWidth": 0.5
+      }
     },
     {
       "data": {
         "url": "data/world_110m.json",
-        "format": { "type": "topojson", "feature": "countries" }
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
       },
-      "mark": { "type": "geoshape", "fill": "#E4DEC9", "stroke": "#FFFFFF", "strokeWidth": 0.5 }
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E4DEC9",
+        "stroke": "#FBF8F3",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "url": "data/world_110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "id",
+          "from": {
+            "data": {
+              "url": "data/usda_oecd_global_tfp.csv"
+            },
+            "key": "id",
+            "fields": [
+              "Country",
+              "TFP_Index_2024",
+              "Annual_TFP_Growth_Pct",
+              "OECD_Producer_Support_Pct"
+            ]
+          }
+        },
+        {
+          "filter": "datum.TFP_Index_2024 != null"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.9
+      },
+      "encoding": {
+        "color": {
+          "field": "TFP_Index_2024",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "viridis",
+            "domain": [
+              115,
+              220
+            ]
+          },
+          "legend": {
+            "title": "TFP Index (1990=100)",
+            "orient": "bottom"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Country",
+            "type": "nominal",
+            "title": "Country"
+          },
+          {
+            "field": "TFP_Index_2024",
+            "type": "quantitative",
+            "title": "2024 TFP Index (1990=100)",
+            "format": ".1f"
+          },
+          {
+            "field": "Annual_TFP_Growth_Pct",
+            "type": "quantitative",
+            "title": "Annual TFP Growth (%)",
+            "format": ".2f"
+          },
+          {
+            "field": "OECD_Producer_Support_Pct",
+            "type": "quantitative",
+            "title": "OECD Producer Subsidy (% Receipts)",
+            "format": ".1f"
+          }
+        ]
+      }
     },
     {
       "data": {
         "values": [
-          { "lon_bin": -100, "lat_bin": 40, "tfp": 156.8 },
-          { "lon_bin": -90, "lat_bin": 40, "tfp": 156.8 },
-          { "lon_bin": -100, "lat_bin": 30, "tfp": 156.8 },
-          { "lon_bin": -110, "lat_bin": 50, "tfp": 159.4 },
-          { "lon_bin": -100, "lat_bin": 50, "tfp": 159.4 },
-          { "lon_bin": -50, "lat_bin": -10, "tfp": 210.4 },
-          { "lon_bin": -60, "lat_bin": -15, "tfp": 210.4 },
-          { "lon_bin": 10, "lat_bin": 50, "tfp": 132.5 },
-          { "lon_bin": 20, "lat_bin": 50, "tfp": 132.5 },
-          { "lon_bin": 105, "lat_bin": 35, "tfp": 224.1 },
-          { "lon_bin": 115, "lat_bin": 30, "tfp": 224.1 },
-          { "lon_bin": 125, "lat_bin": 35, "tfp": 118.4 },
-          { "lon_bin": 135, "lat_bin": 35, "tfp": 121.0 },
-          { "lon_bin": 120, "lat_bin": -30, "tfp": 164.2 },
-          { "lon_bin": 130, "lat_bin": -25, "tfp": 164.2 },
-          { "lon_bin": 140, "lat_bin": -35, "tfp": 164.2 },
-          { "lon_bin": 145, "lat_bin": -30, "tfp": 164.2 }
+          {
+            "Lon": 134,
+            "Lat": -25,
+            "Label": "Australia: 164.2 TFP Index with only 2.4% OECD subsidy"
+          }
         ]
       },
       "mark": {
-        "type": "rect",
-        "stroke": "#FFFFFF",
-        "strokeWidth": 0.8,
-        "width": 18,
-        "height": 14
+        "type": "text",
+        "dy": 32,
+        "fontSize": 11.5,
+        "fontWeight": "bold",
+        "fill": "#C85A32"
       },
       "encoding": {
-        "longitude": { "field": "lon_bin", "type": "quantitative" },
-        "latitude": { "field": "lat_bin", "type": "quantitative" },
-        "color": {
-          "field": "tfp",
-          "type": "quantitative",
-          "title": "TFP Index (1990=100)",
-          "scale": { "scheme": "viridis", "domain": [115, 230] },
-          "legend": { "orient": "bottom", "direction": "horizontal" }
+        "longitude": {
+          "field": "Lon",
+          "type": "quantitative"
         },
-        "tooltip": [
-          { "field": "tfp", "type": "quantitative", "title": "Grid Cell Mean TFP" }
-        ]
+        "latitude": {
+          "field": "Lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Label",
+          "type": "nominal"
+        }
       }
     }
-  ]
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Source Sans 3, sans-serif",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "axis": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#232725",
+      "labelColor": "#454D48",
+      "gridColor": "#EAE3D2",
+      "domainColor": "#C7BFA8"
+    },
+    "legend": {
+      "labelFontSize": 11.5,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "titleColor": "#1E4D3B"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
 }
