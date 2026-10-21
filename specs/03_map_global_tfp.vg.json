@@ -2,162 +2,62 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 380,
-  "projection": {
-    "type": "equalEarth"
-  },
+  "projection": { "type": "equalEarth" },
   "layer": [
     {
       "data": { "sphere": true },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#F4EFE4"
-      }
-    },
-    {
-      "data": { "graticule": { "step": [30, 30] } },
-      "mark": {
-        "type": "geoshape",
-        "stroke": "#E2DAC6",
-        "strokeWidth": 0.5
-      }
+      "mark": { "type": "geoshape", "fill": "#F4EFE4" }
     },
     {
       "data": {
         "url": "data/world_110m.json",
         "format": { "type": "topojson", "feature": "countries" }
       },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#E4DEC9",
-        "stroke": "#FBF8F3",
-        "strokeWidth": 0.5
-      }
+      "mark": { "type": "geoshape", "fill": "#E4DEC9", "stroke": "#FFFFFF", "strokeWidth": 0.5 }
     },
     {
       "data": {
         "values": [
-          { "Country": "Australia", "Lat": -25.27, "Lon": 133.77, "TFP_Index_2024": 164.2, "OECD_Producer_Support_Pct": 2.4 },
-          { "Country": "Australia", "Lat": -28.00, "Lon": 120.00, "TFP_Index_2024": 164.2, "OECD_Producer_Support_Pct": 2.4 },
-          { "Country": "Australia", "Lat": -30.00, "Lon": 145.00, "TFP_Index_2024": 164.2, "OECD_Producer_Support_Pct": 2.4 },
-          { "Country": "Australia", "Lat": -22.00, "Lon": 128.00, "TFP_Index_2024": 164.2, "OECD_Producer_Support_Pct": 2.4 },
-          { "Country": "United States", "Lat": 37.09, "Lon": -95.71, "TFP_Index_2024": 156.8, "OECD_Producer_Support_Pct": 11.2 },
-          { "Country": "United States", "Lat": 40.00, "Lon": -100.00, "TFP_Index_2024": 156.8, "OECD_Producer_Support_Pct": 11.2 },
-          { "Country": "United States", "Lat": 32.00, "Lon": -88.00, "TFP_Index_2024": 156.8, "OECD_Producer_Support_Pct": 11.2 },
-          { "Country": "Canada", "Lat": 56.13, "Lon": -106.34, "TFP_Index_2024": 159.4, "OECD_Producer_Support_Pct": 8.5 },
-          { "Country": "Canada", "Lat": 53.00, "Lon": -113.00, "TFP_Index_2024": 159.4, "OECD_Producer_Support_Pct": 8.5 },
-          { "Country": "Canada", "Lat": 50.00, "Lon": -95.00, "TFP_Index_2024": 159.4, "OECD_Producer_Support_Pct": 8.5 },
-          { "Country": "Brazil", "Lat": -14.23, "Lon": -51.92, "TFP_Index_2024": 210.4, "OECD_Producer_Support_Pct": 3.1 },
-          { "Country": "Brazil", "Lat": -10.00, "Lon": -55.00, "TFP_Index_2024": 210.4, "OECD_Producer_Support_Pct": 3.1 },
-          { "Country": "Brazil", "Lat": -20.00, "Lon": -48.00, "TFP_Index_2024": 210.4, "OECD_Producer_Support_Pct": 3.1 },
-          { "Country": "Brazil", "Lat": -5.00, "Lon": -60.00, "TFP_Index_2024": 210.4, "OECD_Producer_Support_Pct": 3.1 },
-          { "Country": "China", "Lat": 35.86, "Lon": 104.19, "TFP_Index_2024": 224.1, "OECD_Producer_Support_Pct": 14.3 },
-          { "Country": "China", "Lat": 31.00, "Lon": 112.00, "TFP_Index_2024": 224.1, "OECD_Producer_Support_Pct": 14.3 },
-          { "Country": "China", "Lat": 40.00, "Lon": 116.00, "TFP_Index_2024": 224.1, "OECD_Producer_Support_Pct": 14.3 },
-          { "Country": "China", "Lat": 28.00, "Lon": 105.00, "TFP_Index_2024": 224.1, "OECD_Producer_Support_Pct": 14.3 },
-          { "Country": "European Union", "Lat": 48.52, "Lon": 15.25, "TFP_Index_2024": 132.5, "OECD_Producer_Support_Pct": 17.8 },
-          { "Country": "European Union", "Lat": 46.00, "Lon": 2.00, "TFP_Index_2024": 132.5, "OECD_Producer_Support_Pct": 17.8 },
-          { "Country": "Japan", "Lat": 36.20, "Lon": 138.25, "TFP_Index_2024": 121.0, "OECD_Producer_Support_Pct": 37.6 },
-          { "Country": "South Korea", "Lat": 35.90, "Lon": 127.76, "TFP_Index_2024": 118.4, "OECD_Producer_Support_Pct": 44.2 }
+          { "lon_bin": -100, "lat_bin": 40, "tfp": 156.8 },
+          { "lon_bin": -90, "lat_bin": 40, "tfp": 156.8 },
+          { "lon_bin": -100, "lat_bin": 30, "tfp": 156.8 },
+          { "lon_bin": -110, "lat_bin": 50, "tfp": 159.4 },
+          { "lon_bin": -100, "lat_bin": 50, "tfp": 159.4 },
+          { "lon_bin": -50, "lat_bin": -10, "tfp": 210.4 },
+          { "lon_bin": -60, "lat_bin": -15, "tfp": 210.4 },
+          { "lon_bin": 10, "lat_bin": 50, "tfp": 132.5 },
+          { "lon_bin": 20, "lat_bin": 50, "tfp": 132.5 },
+          { "lon_bin": 105, "lat_bin": 35, "tfp": 224.1 },
+          { "lon_bin": 115, "lat_bin": 30, "tfp": 224.1 },
+          { "lon_bin": 125, "lat_bin": 35, "tfp": 118.4 },
+          { "lon_bin": 135, "lat_bin": 35, "tfp": 121.0 },
+          { "lon_bin": 120, "lat_bin": -30, "tfp": 164.2 },
+          { "lon_bin": 130, "lat_bin": -25, "tfp": 164.2 },
+          { "lon_bin": 140, "lat_bin": -35, "tfp": 164.2 },
+          { "lon_bin": 145, "lat_bin": -30, "tfp": 164.2 }
         ]
       },
       "mark": {
-        "type": "circle",
-        "size": 32,
-        "opacity": 0.9,
-        "stroke": "#1E4D3B",
-        "strokeWidth": 1
+        "type": "rect",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.8,
+        "width": 18,
+        "height": 14
       },
       "encoding": {
-        "longitude": { "field": "Lon", "type": "quantitative" },
-        "latitude": { "field": "Lat", "type": "quantitative" },
+        "longitude": { "field": "lon_bin", "type": "quantitative" },
+        "latitude": { "field": "lat_bin", "type": "quantitative" },
         "color": {
-          "field": "OECD_Producer_Support_Pct",
+          "field": "tfp",
           "type": "quantitative",
-          "title": "OECD Subsidy Share (%)",
-          "scale": {
-            "scheme": "reds",
-            "domain": [0, 50]
-          },
-          "legend": {
-            "orient": "bottom",
-            "direction": "horizontal"
-          }
+          "title": "TFP Index (1990=100)",
+          "scale": { "scheme": "viridis", "domain": [115, 230] },
+          "legend": { "orient": "bottom", "direction": "horizontal" }
         },
         "tooltip": [
-          { "field": "Country", "type": "nominal", "title": "Country / Region" },
-          { "field": "TFP_Index_2024", "type": "quantitative", "title": "2024 TFP Index (1990=100)", "format": ".1f" },
-          { "field": "OECD_Producer_Support_Pct", "type": "quantitative", "title": "OECD Producer Subsidy (%)", "format": ".1f" }
+          { "field": "tfp", "type": "quantitative", "title": "Grid Cell Mean TFP" }
         ]
       }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "Lon": 134,
-            "Lat": -25,
-            "Label": "Australia: 164.2 TFP Index with only 2.4% OECD subsidy"
-          }
-        ]
-      },
-      "layer": [
-        {
-          "mark": {
-            "type": "rect",
-            "fill": "#FFFFFF",
-            "stroke": "#C85A32",
-            "strokeWidth": 1.2,
-            "cornerRadius": 4,
-            "opacity": 0.95
-          },
-          "encoding": {
-            "longitude": { "value": 110 },
-            "longitude2": { "value": 160 },
-            "latitude": { "value": -32 },
-            "latitude2": { "value": -42 }
-          }
-        },
-        {
-          "mark": {
-            "type": "text",
-            "fontSize": 10.5,
-            "fontWeight": "bold",
-            "fill": "#C85A32",
-            "align": "center"
-          },
-          "encoding": {
-            "longitude": { "field": "Lon", "type": "quantitative" },
-            "latitude": { "field": "Lat", "type": "quantitative" },
-            "text": { "field": "Label", "type": "nominal" }
-          }
-        }
-      ]
     }
-  ],
-  "config": {
-    "background": "transparent",
-    "font": "Source Sans 3, sans-serif",
-    "autosize": {
-      "type": "fit",
-      "contains": "padding"
-    },
-    "axis": {
-      "labelFontSize": 11.5,
-      "titleFontSize": 12,
-      "titleFontWeight": 600,
-      "titleColor": "#232725",
-      "labelColor": "#454D48",
-      "gridColor": "#EAE3D2",
-      "domainColor": "#C7BFA8"
-    },
-    "legend": {
-      "labelFontSize": 11.5,
-      "titleFontSize": 12,
-      "titleFontWeight": 600,
-      "titleColor": "#1E4D3B"
-    },
-    "view": {
-      "stroke": "transparent"
-    }
-  }
+  ]
 }
