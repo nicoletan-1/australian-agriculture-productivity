@@ -1,0 +1,14 @@
+bin_id,country,iso3,lat,lon,tfp_2023,oecd_subsidy_pct
+AUS_01,Australia,AUS,-30,120,117.54,2.4
+AUS_02,Australia,AUS,-25,135,117.54,2.4
+AUS_03,Australia,AUS,-32,145,117.54,2.4
+CHN_01,China,CHN,35,105,115.67,14.3
+CHN_02,China,CHN,30,115,115.67,14.3
+BRA_01,Brazil,BRA,-10,-55,111.79,3.1
+BRA_02,Brazil,BRA,-20,-48,111.79,3.1
+USA_01,United States,USA,40,-100,105.30,11.2
+USA_02,United States,USA,38,-90,105.30,11.2
+DEU_01,Germany,DEU,51,10,110.56,17.8
+FRA_01,France,FRA,46,2,105.12,17.8
+GBR_01,United Kingdom,GBR,54,-2,96.82,15.4
+NZL_01,New Zealand,NZL,-41,172,95.25,1.8
