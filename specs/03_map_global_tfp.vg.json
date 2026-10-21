@@ -39,16 +39,21 @@
           { "Country": "Australia", "Lat": -25.27, "Lon": 133.77, "TFP_Index_2024": 164.2, "OECD_Producer_Support_Pct": 2.4 },
           { "Country": "Australia", "Lat": -28.00, "Lon": 120.00, "TFP_Index_2024": 164.2, "OECD_Producer_Support_Pct": 2.4 },
           { "Country": "Australia", "Lat": -30.00, "Lon": 145.00, "TFP_Index_2024": 164.2, "OECD_Producer_Support_Pct": 2.4 },
+          { "Country": "Australia", "Lat": -22.00, "Lon": 128.00, "TFP_Index_2024": 164.2, "OECD_Producer_Support_Pct": 2.4 },
           { "Country": "United States", "Lat": 37.09, "Lon": -95.71, "TFP_Index_2024": 156.8, "OECD_Producer_Support_Pct": 11.2 },
           { "Country": "United States", "Lat": 40.00, "Lon": -100.00, "TFP_Index_2024": 156.8, "OECD_Producer_Support_Pct": 11.2 },
+          { "Country": "United States", "Lat": 32.00, "Lon": -88.00, "TFP_Index_2024": 156.8, "OECD_Producer_Support_Pct": 11.2 },
           { "Country": "Canada", "Lat": 56.13, "Lon": -106.34, "TFP_Index_2024": 159.4, "OECD_Producer_Support_Pct": 8.5 },
           { "Country": "Canada", "Lat": 53.00, "Lon": -113.00, "TFP_Index_2024": 159.4, "OECD_Producer_Support_Pct": 8.5 },
+          { "Country": "Canada", "Lat": 50.00, "Lon": -95.00, "TFP_Index_2024": 159.4, "OECD_Producer_Support_Pct": 8.5 },
           { "Country": "Brazil", "Lat": -14.23, "Lon": -51.92, "TFP_Index_2024": 210.4, "OECD_Producer_Support_Pct": 3.1 },
           { "Country": "Brazil", "Lat": -10.00, "Lon": -55.00, "TFP_Index_2024": 210.4, "OECD_Producer_Support_Pct": 3.1 },
           { "Country": "Brazil", "Lat": -20.00, "Lon": -48.00, "TFP_Index_2024": 210.4, "OECD_Producer_Support_Pct": 3.1 },
+          { "Country": "Brazil", "Lat": -5.00, "Lon": -60.00, "TFP_Index_2024": 210.4, "OECD_Producer_Support_Pct": 3.1 },
           { "Country": "China", "Lat": 35.86, "Lon": 104.19, "TFP_Index_2024": 224.1, "OECD_Producer_Support_Pct": 14.3 },
           { "Country": "China", "Lat": 31.00, "Lon": 112.00, "TFP_Index_2024": 224.1, "OECD_Producer_Support_Pct": 14.3 },
           { "Country": "China", "Lat": 40.00, "Lon": 116.00, "TFP_Index_2024": 224.1, "OECD_Producer_Support_Pct": 14.3 },
+          { "Country": "China", "Lat": 28.00, "Lon": 105.00, "TFP_Index_2024": 224.1, "OECD_Producer_Support_Pct": 14.3 },
           { "Country": "European Union", "Lat": 48.52, "Lon": 15.25, "TFP_Index_2024": 132.5, "OECD_Producer_Support_Pct": 17.8 },
           { "Country": "European Union", "Lat": 46.00, "Lon": 2.00, "TFP_Index_2024": 132.5, "OECD_Producer_Support_Pct": 17.8 },
           { "Country": "Japan", "Lat": 36.20, "Lon": 138.25, "TFP_Index_2024": 121.0, "OECD_Producer_Support_Pct": 37.6 },
@@ -57,8 +62,8 @@
       },
       "mark": {
         "type": "circle",
-        "size": 28,
-        "opacity": 0.85,
+        "size": 32,
+        "opacity": 0.9,
         "stroke": "#1E4D3B",
         "strokeWidth": 1
       },
@@ -79,8 +84,8 @@
           }
         },
         "tooltip": [
-          { "field": "Country", "type": "nominal", "title": "Country/Region" },
-          { "field": "TFP_Index_2024", "type": "quantitative", "title": "2024 TFP Index", "format": ".1f" },
+          { "field": "Country", "type": "nominal", "title": "Country / Region" },
+          { "field": "TFP_Index_2024", "type": "quantitative", "title": "2024 TFP Index (1990=100)", "format": ".1f" },
           { "field": "OECD_Producer_Support_Pct", "type": "quantitative", "title": "OECD Producer Subsidy (%)", "format": ".1f" }
         ]
       }
