@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 680,
+  "width": "container",
   "height": 360,
   "projection": {
     "type": "equalEarth"
@@ -18,10 +18,7 @@
     {
       "data": {
         "graticule": {
-          "step": [
-            30,
-            30
-          ]
+          "step": [30, 30]
         }
       },
       "mark": {
@@ -47,58 +44,127 @@
     },
     {
       "data": {
-        "url": "data/world_110m.json",
-        "format": {
-          "type": "topojson",
-          "feature": "countries"
-        }
+        "values": [
+          {
+            "Country": "Australia",
+            "Lat": -25.27,
+            "Lon": 133.77,
+            "TFP_Index_2024": 164.2,
+            "Annual_TFP_Growth_Pct": 1.52,
+            "OECD_Producer_Support_Pct": 2.4
+          },
+          {
+            "Country": "United States",
+            "Lat": 37.09,
+            "Lon": -95.71,
+            "TFP_Index_2024": 156.8,
+            "Annual_TFP_Growth_Pct": 1.28,
+            "OECD_Producer_Support_Pct": 11.2
+          },
+          {
+            "Country": "Canada",
+            "Lat": 56.13,
+            "Lon": -106.34,
+            "TFP_Index_2024": 159.4,
+            "Annual_TFP_Growth_Pct": 1.35,
+            "OECD_Producer_Support_Pct": 8.5
+          },
+          {
+            "Country": "Brazil",
+            "Lat": -14.23,
+            "Lon": -51.92,
+            "TFP_Index_2024": 210.4,
+            "Annual_TFP_Growth_Pct": 2.15,
+            "OECD_Producer_Support_Pct": 3.1
+          },
+          {
+            "Country": "China",
+            "Lat": 35.86,
+            "Lon": 104.19,
+            "TFP_Index_2024": 224.1,
+            "Annual_TFP_Growth_Pct": 2.42,
+            "OECD_Producer_Support_Pct": 14.3
+          },
+          {
+            "Country": "European Union",
+            "Lat": 48.52,
+            "Lon": 15.25,
+            "TFP_Index_2024": 132.5,
+            "Annual_TFP_Growth_Pct": 0.85,
+            "OECD_Producer_Support_Pct": 17.8
+          },
+          {
+            "Country": "Japan",
+            "Lat": 36.20,
+            "Lon": 138.25,
+            "TFP_Index_2024": 121.0,
+            "Annual_TFP_Growth_Pct": 0.45,
+            "OECD_Producer_Support_Pct": 37.6
+          },
+          {
+            "Country": "South Korea",
+            "Lat": 35.90,
+            "Lon": 127.76,
+            "TFP_Index_2024": 118.4,
+            "Annual_TFP_Growth_Pct": 0.38,
+            "OECD_Producer_Support_Pct": 44.2
+          }
+        ]
       },
       "transform": [
         {
-          "lookup": "id",
-          "from": {
-            "data": {
-              "url": "data/usda_oecd_global_tfp.csv"
-            },
-            "key": "id",
-            "fields": [
-              "Country",
-              "TFP_Index_2024",
-              "Annual_TFP_Growth_Pct",
-              "OECD_Producer_Support_Pct"
-            ]
-          }
+          "bin": { "maxbins": 30 },
+          "field": "Lon",
+          "as": "bin_Lon"
         },
         {
-          "filter": "datum.TFP_Index_2024 != null"
+          "bin": { "maxbins": 20 },
+          "field": "Lat",
+          "as": "bin_Lat"
         }
       ],
       "mark": {
-        "type": "geoshape",
-        "stroke": "#FFFFFF",
-        "strokeWidth": 0.9
+        "type": "rect",
+        "stroke": "#1E4D3B",
+        "strokeWidth": 1,
+        "cornerRadius": 2,
+        "opacity": 0.9
       },
       "encoding": {
+        "longitude": {
+          "field": "bin_Lon",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "bin_Lon_end",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "bin_Lat",
+          "type": "quantitative"
+        },
+        "latitude2": {
+          "field": "bin_Lat_end",
+          "type": "quantitative"
+        },
         "color": {
           "field": "TFP_Index_2024",
           "type": "quantitative",
           "scale": {
             "scheme": "viridis",
-            "domain": [
-              115,
-              220
-            ]
+            "domain": [115, 220]
           },
           "legend": {
             "title": "TFP Index (1990=100)",
-            "orient": "bottom"
+            "orient": "bottom",
+            "direction": "horizontal"
           }
         },
         "tooltip": [
           {
             "field": "Country",
             "type": "nominal",
-            "title": "Country"
+            "title": "Country/Region"
           },
           {
             "field": "TFP_Index_2024",
@@ -115,7 +181,7 @@
           {
             "field": "OECD_Producer_Support_Pct",
             "type": "quantitative",
-            "title": "OECD Producer Subsidy (% Receipts)",
+            "title": "OECD Producer Subsidy (%)",
             "format": ".1f"
           }
         ]
@@ -131,27 +197,47 @@
           }
         ]
       },
-      "mark": {
-        "type": "text",
-        "dy": 32,
-        "fontSize": 11.5,
-        "fontWeight": "bold",
-        "fill": "#C85A32"
-      },
-      "encoding": {
-        "longitude": {
-          "field": "Lon",
-          "type": "quantitative"
+      "layer": [
+        {
+          "mark": {
+            "type": "rect",
+            "fill": "#FFFFFF",
+            "stroke": "#C85A32",
+            "strokeWidth": 1.2,
+            "cornerRadius": 4,
+            "opacity": 0.95
+          },
+          "encoding": {
+            "longitude": { "value": 110 },
+            "longitude2": { "value": 160 },
+            "latitude": { "value": -32 },
+            "latitude2": { "value": -42 }
+          }
         },
-        "latitude": {
-          "field": "Lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "Label",
-          "type": "nominal"
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 10.5,
+            "fontWeight": "bold",
+            "fill": "#C85A32",
+            "align": "center"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "Lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "Lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "Label",
+              "type": "nominal"
+            }
+          }
         }
-      }
+      ]
     }
   ],
   "config": {
