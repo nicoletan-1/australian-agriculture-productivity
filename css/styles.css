@@ -327,3 +327,7 @@ html, body {
   margin: 0 8px;
   cursor: pointer;
 }
+
+.idiom-pill {
+  display: none !important;
+}
